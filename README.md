@@ -44,7 +44,6 @@ Simply connect the pedalboard connector wires directly to the Arduino pins:
 | 12 | MD6 | Digital Pin 3 | OUTPUT | Column 6 |
 | 13 | *(empty)* | — | — | Not connected |
 | 14 | MD7 | Digital Pin 2 | OUTPUT | Column 7 |
-| — | GND | GND | GROUND | Common ground (if needed) |
 
 **Important:** The diodes in your pedalboard prevent ghosting and protect against shorts. Make sure they're all oriented the same direction.
 
