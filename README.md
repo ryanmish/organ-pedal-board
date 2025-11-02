@@ -22,24 +22,29 @@ The Arduino Uno R3 does not enumerate as a native USB-MIDI device. Rather than r
 - **Row pins**: Arduino analog pins A0-A3 (inputs with internal pullups)
 - **Diodes**: Already present in pedalboard matrix to prevent ghosting
 
-### Pin Configuration
-```
-Columns (drive LOW to scan):
-- MD0 → Pin 2
-- MD1 → Pin 3
-- MD2 → Pin 4
-- MD3 → Pin 5
-- MD4 → Pin 6
-- MD5 → Pin 7
-- MD6 → Pin 8
-- MD7 → Pin 9
+### Wiring Table
 
-Rows (read with pullups):
-- Row 0 → A0 (Black wire)
-- Row 1 → A1 (White wire)
-- Row 2 → A2 (Yellow wire)
-- Row 3 → A3 (Brown wire)
-```
+**No resistors needed!** The Arduino's internal pullup resistors handle everything.
+
+Simply connect the pedalboard connector wires directly to the Arduino pins:
+
+| Pedalboard Wire | Arduino Pin | Type | Notes |
+|-----------------|-------------|------|-------|
+| MD0 | Digital Pin 9 | OUTPUT | Column 0 (driven LOW to scan) |
+| MD1 | Digital Pin 8 | OUTPUT | Column 1 |
+| MD2 | Digital Pin 7 | OUTPUT | Column 2 |
+| MD3 | Digital Pin 6 | OUTPUT | Column 3 |
+| MD4 | Digital Pin 5 | OUTPUT | Column 4 |
+| MD5 | Digital Pin 4 | OUTPUT | Column 5 |
+| MD6 | Digital Pin 3 | OUTPUT | Column 6 |
+| MD7 | Digital Pin 2 | OUTPUT | Column 7 |
+| PS1 | Analog Pin A0 | INPUT_PULLUP | Row 1 (reads LOW when pressed) |
+| PS2 | Analog Pin A1 | INPUT_PULLUP | Row 2 |
+| PS3 | Analog Pin A2 | INPUT_PULLUP | Row 3 |
+| PS4 | Analog Pin A3 | INPUT_PULLUP | Row 4 |
+| GND | GND | GROUND | Common ground (if needed) |
+
+**Important:** The diodes in your pedalboard prevent ghosting and protect against shorts. Make sure they're all oriented the same direction.
 
 ## Software Setup
 
