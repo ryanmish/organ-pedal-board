@@ -6,8 +6,8 @@
  * Requires a serial-to-MIDI bridge on the host computer (SerialMidiBridge, Hairless, etc.)
  *
  * Based on wiring diagram:
- * - Columns (MD0-MD7): Digital pins 2-9 (outputs, driven LOW to scan)
- * - Rows: Analog pins A0-A3 (inputs with pullups, read HIGH when not pressed)
+ * - Columns (MD0-MD7): MD0→Pin 9, MD1→Pin 8, ..., MD7→Pin 2 (outputs, driven LOW to scan)
+ * - Rows (PS1-PS4): PS1→A0, PS2→A1, PS3→A2, PS4→A3 (inputs with pullups, read HIGH when not pressed)
  * - Diodes prevent ghosting in the matrix
  */
 
@@ -19,10 +19,12 @@ const unsigned long DEBOUNCE_MS = 5; // Debounce time in milliseconds
 
 // ============ PIN CONFIGURATION ============
 // Column pins (outputs) - MD0 to MD7
-const uint8_t colPins[] = {2, 3, 4, 5, 6, 7, 8, 9};
+// MD0 → Pin 9, MD1 → Pin 8, ..., MD7 → Pin 2
+const uint8_t colPins[] = {9, 8, 7, 6, 5, 4, 3, 2};
 const uint8_t NUM_COLS = 8;
 
-// Row pins (inputs with pullups) - A0 to A3
+// Row pins (inputs with pullups) - PS1 to PS4
+// PS1 → A0, PS2 → A1, PS3 → A2, PS4 → A3
 const uint8_t rowPins[] = {A0, A1, A2, A3};
 const uint8_t NUM_ROWS = 4;
 

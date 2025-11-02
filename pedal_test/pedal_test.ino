@@ -10,10 +10,12 @@
 
 // ============ PIN CONFIGURATION ============
 // Column pins (outputs) - MD0 to MD7
-const uint8_t colPins[] = {2, 3, 4, 5, 6, 7, 8, 9};
+// MD0 → Pin 9, MD1 → Pin 8, ..., MD7 → Pin 2
+const uint8_t colPins[] = {9, 8, 7, 6, 5, 4, 3, 2};
 const uint8_t NUM_COLS = 8;
 
-// Row pins (inputs with pullups) - A0 to A3
+// Row pins (inputs with pullups) - PS1 to PS4
+// PS1 → A0, PS2 → A1, PS3 → A2, PS4 → A3
 const uint8_t rowPins[] = {A0, A1, A2, A3};
 const uint8_t NUM_ROWS = 4;
 
@@ -115,8 +117,8 @@ void printPedalPressed(uint8_t keyIndex, uint8_t col, uint8_t row) {
   Serial.print(col);
   Serial.print(") | Row ");
   Serial.print(row);
-  Serial.print(" (A");
-  Serial.print(row);
+  Serial.print(" (PS");
+  Serial.print(row + 1);
   Serial.print(") | MIDI Note: ");
   Serial.println(36 + keyIndex);
 }
@@ -130,7 +132,7 @@ void printPedalReleased(uint8_t keyIndex, uint8_t col, uint8_t row) {
   Serial.print(col);
   Serial.print(") | Row ");
   Serial.print(row);
-  Serial.print(" (A");
-  Serial.print(row);
+  Serial.print(" (PS");
+  Serial.print(row + 1);
   Serial.println(")");
 }
