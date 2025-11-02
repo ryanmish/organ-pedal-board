@@ -28,21 +28,23 @@ The Arduino Uno R3 does not enumerate as a native USB-MIDI device. Rather than r
 
 Simply connect the pedalboard connector wires directly to the Arduino pins:
 
-| Pedalboard Wire | Arduino Pin | Type | Notes |
-|-----------------|-------------|------|-------|
-| MD0 | Digital Pin 9 | OUTPUT | Column 0 (driven LOW to scan) |
-| MD1 | Digital Pin 8 | OUTPUT | Column 1 |
-| MD2 | Digital Pin 7 | OUTPUT | Column 2 |
-| MD3 | Digital Pin 6 | OUTPUT | Column 3 |
-| MD4 | Digital Pin 5 | OUTPUT | Column 4 |
-| MD5 | Digital Pin 4 | OUTPUT | Column 5 |
-| MD6 | Digital Pin 3 | OUTPUT | Column 6 |
-| MD7 | Digital Pin 2 | OUTPUT | Column 7 |
-| PS1 | Analog Pin A0 | INPUT_PULLUP | Row 1 (reads LOW when pressed) |
-| PS2 | Analog Pin A1 | INPUT_PULLUP | Row 2 |
-| PS3 | Analog Pin A2 | INPUT_PULLUP | Row 3 |
-| PS4 | Analog Pin A3 | INPUT_PULLUP | Row 4 |
-| GND | GND | GROUND | Common ground (if needed) |
+| Connector Pin # | Pedalboard Wire | Arduino Pin | Type | Notes |
+|-----------------|-----------------|-------------|------|-------|
+| 1 | MD0 | Digital Pin 9 | OUTPUT | Column 0 (driven LOW to scan) |
+| 2 | MD1 | Digital Pin 8 | OUTPUT | Column 1 |
+| 3 | PS1 | Analog Pin A0 | INPUT_PULLUP | Row 1 (reads LOW when pressed) |
+| 4 | MD2 | Digital Pin 7 | OUTPUT | Column 2 |
+| 5 | PS2 | Analog Pin A1 | INPUT_PULLUP | Row 2 |
+| 6 | MD3 | Digital Pin 6 | OUTPUT | Column 3 |
+| 7 | PS3 | Analog Pin A2 | INPUT_PULLUP | Row 3 |
+| 8 | MD4 | Digital Pin 5 | OUTPUT | Column 4 |
+| 9 | PS4 | Analog Pin A3 | INPUT_PULLUP | Row 4 |
+| 10 | MD5 | Digital Pin 4 | OUTPUT | Column 5 |
+| 11 | *(empty)* | — | — | Not connected |
+| 12 | MD6 | Digital Pin 3 | OUTPUT | Column 6 |
+| 13 | *(empty)* | — | — | Not connected |
+| 14 | MD7 | Digital Pin 2 | OUTPUT | Column 7 |
+| — | GND | GND | GROUND | Common ground (if needed) |
 
 **Important:** The diodes in your pedalboard prevent ghosting and protect against shorts. Make sure they're all oriented the same direction.
 
