@@ -4,18 +4,18 @@ QUICK COPY-PASTE COMMANDS FOR WINDOWS BUILD
 
 --- STEP 1: Download the code ---
 
-git clone https://github.com/YOUR-USERNAME/organ-pedal-board.git
+git clone https://github.com/ryanmish/organ-pedal-board.git
 cd organ-pedal-board
 
 
 --- STEP 2: Install dependencies ---
 
-pip install pyserial python-rtmidi pyinstaller
+python -m pip install pyserial python-rtmidi pyinstaller
 
 
 --- STEP 3: Build the app ---
 
-pyinstaller --onefile --windowed --name "Pedalboard MIDI Bridge" python/midi_bridge_gui.py
+python -m PyInstaller --onefile --windowed --name "Pedalboard MIDI Bridge" python/midi_bridge_gui.py
 
 
 --- STEP 4: Open the dist folder ---
@@ -30,5 +30,23 @@ OR USE THE BATCH FILE (after first-time setup)
 cd organ-pedal-board
 build_windows.bat
 
+
+==============================================
+
+TROUBLESHOOTING
+==============================================
+
+If "pip is not recognized":
+  python -m pip install pyserial python-rtmidi pyinstaller
+
+If "metadata-generation-failed":
+  1. Install Visual C++ Build Tools
+  2. https://visualstudio.microsoft.com/visual-cpp-build-tools/
+  3. Select "Desktop development with C++"
+
+Or try installing one at a time:
+  python -m pip install pyserial
+  python -m pip install python-rtmidi
+  python -m pip install pyinstaller
 
 ==============================================

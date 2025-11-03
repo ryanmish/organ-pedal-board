@@ -38,10 +38,8 @@ This guide will walk you through building the `Pedalboard MIDI Bridge.exe` for W
 Copy and paste this command into Command Prompt and press Enter:
 
 ```
-git clone https://github.com/YOUR-USERNAME/organ-pedal-board.git
+git clone https://github.com/ryanmish/organ-pedal-board.git
 ```
-
-> **Note:** Replace `YOUR-USERNAME` with the actual GitHub username
 
 Then navigate into the folder:
 
@@ -54,18 +52,22 @@ cd organ-pedal-board
 Copy and paste this command and press Enter:
 
 ```
-pip install pyserial python-rtmidi pyinstaller
+python -m pip install pyserial python-rtmidi pyinstaller
 ```
 
-Wait for it to finish (takes about 1-2 minutes).
+> **Note:** If you get "pip is not recognized", use `python -m pip` instead of just `pip`
+
+Wait for it to finish (takes about 1-2 minutes). You may see some warnings - that's normal!
 
 ### Step 4: Build the App
 
 Copy and paste this command and press Enter:
 
 ```
-pyinstaller --onefile --windowed --name "Pedalboard MIDI Bridge" python/midi_bridge_gui.py
+python -m PyInstaller --onefile --windowed --name "Pedalboard MIDI Bridge" python/midi_bridge_gui.py
 ```
+
+> **Note:** If you get "pyinstaller is not recognized", use `python -m PyInstaller` instead of just `pyinstaller`
 
 This will take 1-2 minutes. You'll see lots of text scrolling by - that's normal!
 
@@ -127,6 +129,24 @@ Git didn't install correctly. Fix:
 
 This is normal the first time! It's downloading the libraries. Wait 2-3 minutes.
 
+### "metadata-generation-failed" error
+
+This usually means you need to install Visual C++ Build Tools:
+
+1. Download from: https://visualstudio.microsoft.com/visual-cpp-build-tools/
+2. Run the installer
+3. Select "Desktop development with C++"
+4. Click Install (it's large, takes 10-15 minutes)
+5. Restart Command Prompt
+6. Try the `python -m pip install` command again
+
+**Alternative:** Try installing packages one at a time to see which one fails:
+```
+python -m pip install pyserial
+python -m pip install python-rtmidi
+python -m pip install pyinstaller
+```
+
 ### The .exe file is huge (50+ MB)
 
 This is normal! PyInstaller bundles Python and all libraries into one file.
@@ -148,7 +168,7 @@ The `.exe` file is completely standalone.
 ## Need Help?
 
 If you get stuck, open an issue on GitHub:
-https://github.com/YOUR-USERNAME/organ-pedal-board/issues
+https://github.com/ryanmish/organ-pedal-board/issues
 
 Include:
 - What step you're on
