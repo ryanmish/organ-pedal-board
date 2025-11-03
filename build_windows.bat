@@ -8,7 +8,7 @@ REM Install requirements
 pip install pyserial python-rtmidi pyinstaller
 
 REM Build the executable
-pyinstaller --onefile --windowed --name "Pedalboard MIDI Bridge" midi_bridge_gui.py
+pyinstaller --onefile --windowed --name "Pedalboard MIDI Bridge" python/midi_bridge_gui.py
 
 echo.
 echo Build complete! The app is in the dist folder.

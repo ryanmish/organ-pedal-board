@@ -50,7 +50,7 @@ Simply connect the pedalboard connector wires directly to the Arduino pins:
 ## Software Setup
 
 ### Step 1: Upload Arduino Sketch
-1. Open `pedalboard_midi/pedalboard_midi.ino` in Arduino IDE
+1. Open `arduino/pedalboard_midi/pedalboard_midi.ino` in Arduino IDE
 2. Upload to your Arduino Uno R3
 3. Close Arduino Serial Monitor (important - the MIDI bridge needs the serial port!)
 
@@ -59,7 +59,7 @@ Simply connect the pedalboard connector wires directly to the Arduino pins:
 **OPTION A: Use the GUI App (Easiest!)**
 
 **macOS:**
-1. Download `Pedalboard-MIDI-Bridge-macOS.zip` from the releases
+1. Download `releases/Pedalboard-MIDI-Bridge-macOS.zip`
 2. Unzip and drag the app to Applications
 3. Double-click to launch
 4. The app will auto-detect your Arduino and MIDI ports
@@ -77,12 +77,12 @@ If you prefer command-line or the GUI doesn't work:
 
 **With GUI:**
 ```bash
-python3 midi_bridge_gui.py
+python3 python/midi_bridge_gui.py
 ```
 
 **Without GUI (command-line):**
 ```bash
-python3 midi_bridge.py
+python3 python/midi_bridge.py
 ```
 
 Both require: `pip install pyserial python-rtmidi`
@@ -123,7 +123,7 @@ Both require: `pip install pyserial python-rtmidi`
 
 ### TL;DR - Get Playing in 5 Steps:
 1. **Wire** pedalboard to Arduino (see wiring table above)
-2. **Upload** `pedalboard_midi.ino` to Arduino
+2. **Upload** `arduino/pedalboard_midi/pedalboard_midi.ino` to Arduino
 3. **Create** virtual MIDI port (IAC Driver on Mac, loopMIDI on Windows)
 4. **Run** the MIDI bridge app or Python script
 5. **Connect** Hauptwerk/GarageBand to the virtual MIDI port
@@ -166,18 +166,25 @@ That's it! Press pedals = hear notes! 🎹
 organ-pedal-board/
 ├── README.md                              # This file
 ├── wiring-diagram.jpeg                    # Physical wiring reference
-├── pedalboard_midi/
-│   └── pedalboard_midi.ino                # Main Arduino MIDI sketch
-├── pedal_test/
-│   └── pedal_test.ino                     # Test sketch with Serial Monitor output
-├── midi_bridge.py                         # Command-line MIDI bridge
-├── midi_bridge_gui.py                     # GUI MIDI bridge (Mac/Windows)
-├── Pedalboard-MIDI-Bridge-macOS.zip       # Standalone Mac app
 ├── build_windows.bat                      # Windows build script
-├── blink/
-│   └── blink.ino                          # Test sketch (heartbeat LED)
-└── reset/
-    └── reset.ino                          # Blank sketch to reset Arduino
+├── arduino/                               # Arduino sketches
+│   ├── pedalboard_midi/
+│   │   └── pedalboard_midi.ino            # Main Arduino MIDI sketch
+│   ├── pedal_test/
+│   │   └── pedal_test.ino                 # Test sketch with Serial Monitor output
+│   ├── blink/
+│   │   └── blink.ino                      # Test sketch (heartbeat LED)
+│   └── reset/
+│       └── reset.ino                      # Blank sketch to reset Arduino
+├── python/                                # MIDI bridge software
+│   ├── midi_bridge.py                     # Command-line MIDI bridge
+│   └── midi_bridge_gui.py                 # GUI MIDI bridge (Mac/Windows)
+├── releases/                              # Compiled applications
+│   └── Pedalboard-MIDI-Bridge-macOS.zip   # Standalone Mac app
+└── build-artifacts/                       # PyInstaller build files
+    ├── build/
+    ├── dist/
+    └── Pedalboard MIDI Bridge.spec
 ```
 
 ## Future: Native USB-MIDI

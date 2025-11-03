@@ -1,0 +1,34 @@
+==============================================
+QUICK COPY-PASTE COMMANDS FOR WINDOWS BUILD
+==============================================
+
+--- STEP 1: Download the code ---
+
+git clone https://github.com/YOUR-USERNAME/organ-pedal-board.git
+cd organ-pedal-board
+
+
+--- STEP 2: Install dependencies ---
+
+pip install pyserial python-rtmidi pyinstaller
+
+
+--- STEP 3: Build the app ---
+
+pyinstaller --onefile --windowed --name "Pedalboard MIDI Bridge" python/midi_bridge_gui.py
+
+
+--- STEP 4: Open the dist folder ---
+
+explorer dist
+
+
+==============================================
+OR USE THE BATCH FILE (after first-time setup)
+==============================================
+
+cd organ-pedal-board
+build_windows.bat
+
+
+==============================================
