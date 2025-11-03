@@ -1,0 +1,4 @@
+([('Pedalboard MIDI Bridge',
+   '/Users/ryanmish/Desktop/ClaudeFolder/personal/organ-pedal-board/dist/Pedalboard '
+   'MIDI Bridge',
+   'EXECUTABLE')],)

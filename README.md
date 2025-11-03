@@ -49,88 +49,86 @@ Simply connect the pedalboard connector wires directly to the Arduino pins:
 
 ## Software Setup
 
-### Arduino Sketch
+### Step 1: Upload Arduino Sketch
 1. Open `pedalboard_midi/pedalboard_midi.ino` in Arduino IDE
 2. Upload to your Arduino Uno R3
-3. Note the serial port (e.g., `/dev/cu.usbmodem14101` on macOS or `COM3` on Windows)
+3. Close Arduino Serial Monitor (important - the MIDI bridge needs the serial port!)
 
-### Configuration Options (in sketch)
-- `BASE_NOTE`: MIDI note for first pedal (default: 36 = C2, AGO standard)
-- `MIDI_CHANNEL`: MIDI channel (default: 2 for pedals)
-- `VELOCITY`: Note-on velocity (default: 100)
-- `DEBOUNCE_MS`: Debounce time in milliseconds (default: 5ms)
+### Step 2: Set Up MIDI Bridge
 
-## macOS Setup
+**OPTION A: Use the GUI App (Easiest!)**
 
-### 1. Create Virtual MIDI Port
-1. Open **Audio MIDI Setup** (Applications → Utilities)
-2. Open **MIDI Studio** (Window → Show MIDI Studio)
-3. Double-click **IAC Driver**
-4. Check **"Device is online"**
-5. Add a new bus, name it **"Pedals"**
+**macOS:**
+1. Download `Pedalboard-MIDI-Bridge-macOS.zip` from the releases
+2. Unzip and drag the app to Applications
+3. Double-click to launch
+4. The app will auto-detect your Arduino and MIDI ports
+5. Click "Start Bridge"
 
-### 2. Install Serial-to-MIDI Bridge
+**Windows:**
+1. Install Python dependencies: `pip install pyserial python-rtmidi`
+2. Run the build script: `build_windows.bat`
+3. The .exe will be created in the `dist` folder
+4. Double-click to launch
 
-**Option A: SerialMidiBridge (Recommended)**
-- Download from: [GitHub - SerialMidiBridge](https://github.com/gbevin/SerialMidiBridge)
-- Launch the app
-- Select your Arduino's serial port
-- Set baud rate to **115200**
-- Select output port: **IAC: Pedals**
+**OPTION B: Run Python Script (Advanced)**
 
-**Option B: Python Script**
+If you prefer command-line or the GUI doesn't work:
+
+**With GUI:**
 ```bash
-pip install pyserial python-rtmidi
-# Run a simple serial-to-MIDI bridge script
-# (search for "serialmidi.py" examples online)
+python3 midi_bridge_gui.py
 ```
 
-**Option C: Hairless MIDI (deprecated, may not work on current macOS)**
-- Only use if SerialMidiBridge doesn't work
-- Download from: [Hairless MIDI](https://projectgus.github.io/hairless-midiserial/)
+**Without GUI (command-line):**
+```bash
+python3 midi_bridge.py
+```
 
-### 3. Verify MIDI
-1. Download and install **MIDI Monitor**: [snoize.com](https://www.snoize.com/MIDIMonitor/)
-2. Select source: **IAC: Pedals**
-3. Press pedals and verify Note On/Off messages appear
+Both require: `pip install pyserial python-rtmidi`
 
-### 4. Configure Hauptwerk
-1. Open Hauptwerk
-2. Go to MIDI settings
-3. Enable input device: **IAC: Pedals**
-4. Use organ's auto-detect for pedalboard, or map notes manually
+### Step 3: Create Virtual MIDI Port
 
-## Windows Setup
+**macOS:**
+1. Open **Audio MIDI Setup** (Applications → Utilities)
+2. Window → **Show MIDI Studio**
+3. Double-click **IAC Driver**
+4. Check **"Device is online"**
+5. Click **+** to add a port, name it **"Pedals"**
+6. Click **Apply**
 
-### 1. Create Virtual MIDI Port
-1. Download and install **loopMIDI**: [Tobias Erichsen](https://www.tobias-erichsen.de/software/loopmidi.html)
+**Windows:**
+1. Download and install **loopMIDI**: https://www.tobias-erichsen.de/software/loopmidi.html
 2. Launch loopMIDI
 3. Create a new port named **"Pedals"**
 
-### 2. Install Serial-to-MIDI Bridge
+### Step 4: Test MIDI Output
 
-**Option A: SerialMidiBridge (Recommended)**
-- Download from: [GitHub - SerialMidiBridge](https://github.com/gbevin/SerialMidiBridge)
-- Launch the app
-- Select your Arduino's COM port
-- Set baud rate to **115200**
-- Select output port: **loopMIDI: Pedals**
+**macOS:**
+- Download **MIDI Monitor**: https://www.snoize.com/MIDIMonitor/
+- Watch for Note On/Off from IAC: Pedals
 
-**Option B: Hairless MIDI (Works well on Windows)**
-- Download from: [Hairless MIDI](https://projectgus.github.io/hairless-midiserial/)
-- Select Arduino COM port at **115200 baud**
-- Select MIDI output: **loopMIDI: Pedals**
+**Windows:**
+- Download **MIDI-OX**: http://www.midiox.com/
+- Watch for Note On/Off from loopMIDI: Pedals
 
-### 3. Verify MIDI
-1. Download and install **MIDI-OX**: [midiox.com](http://www.midiox.com/)
-2. Configure to watch: **loopMIDI: Pedals**
-3. Press pedals and verify Note On/Off messages appear
-
-### 4. Configure Hauptwerk
-1. Open Hauptwerk
+### Step 5: Connect to Hauptwerk (or GarageBand!)
+1. Open Hauptwerk (or GarageBand for testing)
 2. Go to MIDI settings
-3. Enable input device: **loopMIDI: Pedals**
-4. Use organ's auto-detect for pedalboard, or map notes manually
+3. Enable input: **IAC: Pedals** (Mac) or **loopMIDI: Pedals** (Windows)
+4. Use auto-detect to map the pedalboard
+5. Play! 🎹
+
+## Quick Start Guide
+
+### TL;DR - Get Playing in 5 Steps:
+1. **Wire** pedalboard to Arduino (see wiring table above)
+2. **Upload** `pedalboard_midi.ino` to Arduino
+3. **Create** virtual MIDI port (IAC Driver on Mac, loopMIDI on Windows)
+4. **Run** the MIDI bridge app or Python script
+5. **Connect** Hauptwerk/GarageBand to the virtual MIDI port
+
+That's it! Press pedals = hear notes! 🎹
 
 ## MIDI Specification
 
@@ -166,14 +164,20 @@ pip install pyserial python-rtmidi
 
 ```
 organ-pedal-board/
-├── README.md                    # This file
-├── wiring-diagram.jpeg          # Physical wiring reference
+├── README.md                              # This file
+├── wiring-diagram.jpeg                    # Physical wiring reference
 ├── pedalboard_midi/
-│   └── pedalboard_midi.ino      # Main Arduino sketch
+│   └── pedalboard_midi.ino                # Main Arduino MIDI sketch
+├── pedal_test/
+│   └── pedal_test.ino                     # Test sketch with Serial Monitor output
+├── midi_bridge.py                         # Command-line MIDI bridge
+├── midi_bridge_gui.py                     # GUI MIDI bridge (Mac/Windows)
+├── Pedalboard-MIDI-Bridge-macOS.zip       # Standalone Mac app
+├── build_windows.bat                      # Windows build script
 ├── blink/
-│   └── blink.ino                # Test sketch (heartbeat LED)
+│   └── blink.ino                          # Test sketch (heartbeat LED)
 └── reset/
-    └── reset.ino                # Blank sketch to stop all programs
+    └── reset.ino                          # Blank sketch to reset Arduino
 ```
 
 ## Future: Native USB-MIDI
