@@ -170,17 +170,16 @@ organ-pedal-board/
 ├── arduino/                               # Arduino sketches
 │   ├── pedalboard_midi/
 │   │   └── pedalboard_midi.ino            # Main Arduino MIDI sketch
-│   ├── pedal_test/
-│   │   └── pedal_test.ino                 # Test sketch with Serial Monitor output
-│   ├── blink/
-│   │   └── blink.ino                      # Test sketch (heartbeat LED)
-│   └── reset/
-│       └── reset.ino                      # Blank sketch to reset Arduino
+│   └── pedal_test/
+│       └── pedal_test.ino                 # Test sketch with Serial Monitor output
 ├── python/                                # MIDI bridge software
 │   ├── midi_bridge.py                     # Command-line MIDI bridge
 │   └── midi_bridge_gui.py                 # GUI MIDI bridge (Mac/Windows)
 ├── releases/                              # Compiled applications
 │   └── Pedalboard-MIDI-Bridge-macOS.zip   # Standalone Mac app
+├── windows-build-instructions/            # Windows build guide
+│   ├── BUILD-WINDOWS-APP.md               # Detailed instructions
+│   └── QUICK-COMMANDS.txt                 # Copy-paste commands
 └── build-artifacts/                       # PyInstaller build files
     ├── build/
     ├── dist/
